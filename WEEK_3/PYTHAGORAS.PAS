@@ -1,5 +1,5 @@
 var
-    i,a,b,c,t,dem : Integer;
+    i,a,b,c,t,dem : Longint
     kt : Boolean;
     f : Text;
 begin
