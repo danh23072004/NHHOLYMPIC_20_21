@@ -1,16 +1,7 @@
-function isPRIME(x : Integer) : Boolean;
 var
-    i : Integer;
-begin
-    if (i = 2) then exit (true);
-    for i := 2 to trunc(sqrt(x)) do
-        if x mod i = 0 then exit(false);
-    exit(true);
-end;
-
-var
-    n,i,k,dem : Integer;
+    i,n,k : Longint;
     f : Text;
+    kt : Boolean;
 begin
     assign(f,'BCFACTOR.INP');
     reset(f);
@@ -19,36 +10,24 @@ begin
 
     assign(f,'BCFACTOR.OUT');
     rewrite(f);
-    n := trunc(sqrt(n));
-
-    if (n = 1) then
-        write(f,'1 1')
-    else
+    k := 0;
+    kt := false;
+    for i := 2 to trunc(sqrt(n)) do
     begin
-        n := sqrt(n);
-    end;
-
-    {
-    else if (n <> 0) then
-    begin
-        i := 2;
-        dem := 0;
-        while (n <> 1) do
+        if n mod i = 0 then
         begin
+            kt := true;
             while (n mod i = 0) do
             begin
                 n := n div i;
-                inc(dem);
+                inc(k);
             end;
-            k := i;
-            repeat
-                inc(i);
-            until (isPrime(i) = true);
-            if (dem <> 0) then
-                writeln(f, k, ' ', dem, ' ');
-            dem := 0;
+            writeln(f,i,' ',k,' ');
+            kt := false;
+            k := 0;
         end;
     end;
-    }
+    if n <> 1 then
+        writeln(f,n,' ',1,' ');
     close(f);
 end.
