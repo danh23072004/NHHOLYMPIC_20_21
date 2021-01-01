@@ -1,7 +1,7 @@
 type
-    List = array[1..100] of Integer;
+    List = array[1..100] of Longint;
 var
-    dem,i,n,t,tam : Integer;
+    dem,i,t,tam : Longint;
     f : Text;
     a : List;
 begin
@@ -12,8 +12,8 @@ begin
     close(f);
 
     dem := 0;
-    for i := 1 to n do
-        for t := i + 1 to n do
+    for i := 1 to 4 do
+        for t := i + 1 to 4 do
             if a[i] > a[t] then
             begin
                 tam := a[i];
@@ -21,7 +21,7 @@ begin
                 a[t] := tam;
             end;
 
-    for i := 1 to 4 do
+    for i := 1 to 3 do
         if a[i] <> a[i + 1] then
             inc(dem);
     assign(f,'P146PROC.OUT');
