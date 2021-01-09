@@ -4,7 +4,11 @@ var
 function FindMax(x : Longint; var max : Longint) : Longint;
 begin
     if (x div 10 = 0) then
+    begin
+        if (x mod 10) > max then
+            max := x mod 10;
         exit(max)
+    end
     else
     begin
         if (x mod 10) > max then
