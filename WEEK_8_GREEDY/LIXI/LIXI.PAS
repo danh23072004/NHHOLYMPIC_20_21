@@ -1,7 +1,7 @@
 type
-    List = array[1..10000] of Integer;
+    List = array[1..10000] of Longint;
 var
-    i,n,t,dem : Longint;
+    i,n,t : Integer;
     f : Text;
     a : List;
 
@@ -14,8 +14,8 @@ begin
     R := right;
     while (L <= R) do
     begin
-        while (a[L] > x) do inc(L);
-        while (a[R] < x) do dec(R);
+        while (a[L] < x) do inc(L);
+        while (a[R] > x) do dec(R);
         if (L <= R) then
         begin
             tam := a[L];
@@ -27,22 +27,23 @@ begin
     end;
     if (left < R) then
         QuickSort(a,left,R);
-    if (right > L) then
+    if (L < right) then
         QuickSort(a,L,right);
 end;
 
 begin
-    assign(f,'CHAIN.INP');
+    assign(f,'LIXI.INP');
     reset(f);
     readln(f,n);
-    for i := 1 to n do read(f,a[i]);
+    for i := 1 to n do
+    begin
+        read(f,a[i]);
+    end;
     close(f);
 
-    QuickSort(a,1,n);
-
-    assign(f,'CHAIN.OUT');
+    assign(f,'LIXI.OUT');
     rewrite(f);
+    QuickSort(a,1,n);
     for i := 1 to n do write(f,a[i],' ');
-    write(f,dem);
     close(f);
 end.
