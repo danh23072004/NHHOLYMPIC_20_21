@@ -5,7 +5,7 @@ var
     f : Text;
     a,b : List;
 
-procedure QuickSort(var a : List; left,right : Integer);
+procedure QuickSortUp(var a : List; left,right : Integer);
 var
     L,R,tam,x : Integer;
 begin
@@ -21,12 +21,40 @@ begin
             tam := a[L];
             a[L] := a[R];
             a[R] := tam;
+            inc(L);
+            dec(R);
         end;
     end;
     if (L < right) then
-        QuickSort(a,L,right);
+        QuickSortUp(a,L,right);
     if (left < R) then
-        QuickSort(a,left,R);
+        QuickSortUp(a,left,R);
+end;
+
+procedure QuickSortDown(var a : List; left,right : Integer);
+var
+    L,R,tam,x : Integer;
+begin
+    x := a[(left + right) div 2];
+    L := left;
+    R := right;
+    while (L <= R) do
+    begin
+        while (a[L] > x) do inc(L);
+        while (a[R] < x) do dec(R);
+        if (L <= R) then
+        begin
+            tam := a[L];
+            a[L] := a[R];
+            a[R] := tam;
+            inc(L);
+            dec(R);
+        end;
+    end;
+    if (L < right) then
+        QuickSortDown(a,L,right);
+    if (left < R) then
+        QuickSortDown(a,left,R);
 end;
 
 begin
@@ -37,6 +65,9 @@ begin
     readln(f);
     for i := 1 to n do read(f,b[i]);
     close(f);
+
+    QuickSortUp(a,1,n);
+    QuickSortDown(b,1,n);
 
     i := 1;
     t := 1;
