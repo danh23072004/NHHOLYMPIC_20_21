@@ -35,10 +35,10 @@ begin
         begin
             num := 0;
             k := 1;
-            for t := i to 6 do
+            for t := i to i + 5 do
             begin
                 inc(num,(ord(s[t]) - 48));
-                if (t > length(s)) or ((t = 6) and (num > 100000)) then break;
+                if (t > length(s)) or ((t = i + 5) and (num > 100000)) then break;
                 PrimeSieve(num);
                 if (snt[num] = true) and (num > max) then
                     max := num;
